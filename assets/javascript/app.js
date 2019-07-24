@@ -35,19 +35,24 @@ $( document ).ready(function() {
             clearInterval(intervalId);
             intervalId = setInterval(decrement, 1000);
         }
-        
+
     function decrement () {
         timer--;
         $("#countDown").html("<h2>Time left to answer: </h2>" + timer);
+        if (timer === 0) {
+            stopTimer();
+            $(".outcome").html("<h2>Out of fuel brother, times up!<h2>");
+        }
     }
 
     function stopTimer() {
-
+        clearInterval(intervalId);
     }
 
     $("#startGame").on("click",function(){
         // alert("working");
         runTimer();
+        $(".hide").toggle("slide");
     })
 
 
