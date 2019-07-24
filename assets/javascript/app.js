@@ -27,9 +27,35 @@ var unanswered = 0;
 var timer = 30;
 var intervalId;
 
+var Question1 = 
+    {question : "What does MPH stand for?",
+    correct : "Miles per hour",
+    wrong1 : "Miles per hover",
+    wrong2 : "Mentions per hour",
+    wrong3 : "Michigan plans honor"
+    }
+    
+var Question2 =
+    {question : "What is generally considered to be the first pony car?",
+    correct : "Ford Mustang",
+    wrong1 : "Buick Buckaroo",
+    wrong2 : "Chevrolet Camaro",
+    wrong3 : "GoGo Gadget Car"
+    }
+
+var Question3 =
+    {question : "What year was the Corvette first introduced?",
+    correct : "1953",
+    wrong1 : "2000",
+    wrong2 : "1853",
+    wrong3 : "1970"
+    }
+
+// "What is generally considered to be the first pony car?" , "What year was the Corvette first introduced?"
+
 // functions
 $( document ).ready(function() {
-    console.log( "ready!" );
+    // console.log( "ready!" );
 
     function runTimer() {
             clearInterval(intervalId);
