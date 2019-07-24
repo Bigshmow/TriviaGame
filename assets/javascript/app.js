@@ -52,7 +52,7 @@ $( document ).ready(function() {
     $("#startGame").on("click",function(){
         // alert("working");
         runTimer();
-        $(".hide").toggle("slide");
+        $("#startGame").fadeToggle(1000);
     })
 
 

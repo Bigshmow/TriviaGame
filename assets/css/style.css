@@ -1,7 +1,16 @@
+/* Elements */
+body {
+    background-image: url(../images/asphalt_bg.jpg)
+}
 h1 {
-    color: chocolate;
+    color: rgb(165, 93, 41);
 }
-
-.hide {
-    display: none;
+/* Classes */
+.btn {
+    background-color: bisque;
+    color: black;
 }
+.jumbotron {
+    background-color: grey;
+}
+/* ID */
