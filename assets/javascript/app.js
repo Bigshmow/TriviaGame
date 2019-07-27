@@ -104,7 +104,7 @@ function endgame() {
             $(".answer2").html(" ");
             $(".answer3").html(" ");
             $(".answer4").html(" ");
-            midTimer = 6;
+            midTimer = 11;
             clearInterval(midId);
             midId = setInterval(decMid, 1000);
         }      
@@ -129,7 +129,7 @@ function endgame() {
     }
 
     function runTimer() {
-            timer = 11;
+            timer = 31;
             clearInterval(intervalId);
             intervalId = setInterval(decrement, 1000);
         }
