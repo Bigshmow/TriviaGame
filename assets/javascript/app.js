@@ -83,7 +83,7 @@ function endgame() {
     $(".answer3").html("<h2>Unanswered Questions: " + unanswered + "</h2>").attr("id" , "#gameover");
     $(".answer4").html("<h2> </h2>").attr("id" , "#gameover");
     $(".outcome").html("<h2> </h2>");
-    $("#startGame").fadeToggle(1000).text("Play Again?");
+    $("#startGame").fadeToggle(5000).text("Play Again?");
     stopTimer();
     $("#countDown").html("<h2> </h2>");
     $(".gif").html("<h2> </h2>");
@@ -92,21 +92,17 @@ function endgame() {
     function emptyAnswer() {
         if (nextQ >= 4){
             endgame();
-            
         }
-        else {
-            
+        else {            
             $("#question").html(" ");
             $(".answer1").html(" ");
             $(".answer2").html(" ");
             $(".answer3").html(" ");
             $(".answer4").html(" ");
-            
             midTimer = 6;
             clearInterval(midId);
             midId = setInterval(decMid, 1000);
-        }
-        
+        }      
     }
 
     function decMid () {
@@ -140,7 +136,7 @@ function endgame() {
             stopTimer();
             unanswered++;
             $(".outcome").html("<h2>Out of fuel brother, times up!<h2>");
-            $(".gif").html('<img src="../TriviaGame/assets/images/OOF.gif">');
+            $(".gif").html('<img src="../TriviaGame/assets/images/OOOF.gif">');
             emptyAnswer();
         }
     }
@@ -168,7 +164,7 @@ function endgame() {
             correct++;
             stopTimer();
             $(".outcome").html("<h2>Do a burn out!  You got that one correct!!<h2>");
-            $(".gif").html('<img src="../TriviaGame/assets/images/burnout.gif">');
+            $(".gif").html('<img src="../TriviaGame/assets/images/Burn.gif">');
             emptyAnswer();            
         }
 
@@ -176,7 +172,7 @@ function endgame() {
             incorrect++;
             stopTimer();
             $(".outcome").html("<h2>Wait you didn't know that one?  Crash and burn...<h2>");
-            $(".gif").html('<img src="../TriviaGame/assets/images/crashNburn.gif">');
+            $(".gif").html('<img src="../TriviaGame/assets/images/Crash.gif">');
             emptyAnswer();    
         }   
         });
