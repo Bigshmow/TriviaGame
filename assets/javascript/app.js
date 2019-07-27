@@ -30,6 +30,11 @@ var nextQ = 0;
 var intervalId;
 var midId;
 
+var audio1 = new Audio("../TriviaGame/assets/sounds/start.mp3");
+var audio2 = new Audio("../TriviaGame/assets/sounds/burn.mp3");
+var audio3 = new Audio("../TriviaGame/assets/sounds/crash.mp3");
+var audio4 = new Audio("../TriviaGame/assets/sounds/OOOF.mp3");
+
 var Question1 = 
     {question : "What does MPH stand for?",
     correct : "Miles per hour",
@@ -135,6 +140,7 @@ function endgame() {
         if (timer === 0) {
             stopTimer();
             unanswered++;
+            audio4.play();
             $(".outcome").html("<h2>Out of fuel brother, times up!<h2>");
             $(".gif").html('<img src="../TriviaGame/assets/images/OOOF.gif">');
             emptyAnswer();
@@ -163,6 +169,7 @@ function endgame() {
         if ($(this).is("#correct")){
             correct++;
             stopTimer();
+            audio2.play();
             $(".outcome").html("<h2>Do a burn out!  You got that one correct!!<h2>");
             $(".gif").html('<img src="../TriviaGame/assets/images/Burn.gif">');
             emptyAnswer();            
@@ -171,6 +178,7 @@ function endgame() {
         if ($(this).is("#incorrect")){
             incorrect++;
             stopTimer();
+            audio3.play();
             $(".outcome").html("<h2>Wait you didn't know that one?  Crash and burn...<h2>");
             $(".gif").html('<img src="../TriviaGame/assets/images/Crash.gif">');
             emptyAnswer();    
@@ -185,6 +193,7 @@ function endgame() {
         runTimer();
         populateQA();
         $("#startGame").fadeToggle(1000);
+        audio1.play();
     });
 
     
