@@ -55,7 +55,23 @@ var Question3 =
     wrong3 : "1970"
     }
 
-var arrQuestion = [Question1 , Question2 , Question3];
+var Question4 =
+    {question : "What does RPM stand for?",
+    correct : "Revolutions Per Minute",
+    wrong1 : "Redundant Pineapple Men",
+    wrong2 : "Really Persnickety Marsupials",
+    wrong3 : "Run Pie Machine"
+    }
+
+var Question5 =
+    {question : "Internal Combustion is a type of...",
+    correct : "Engine",
+    wrong1 : "Oil",
+    wrong2 : "Plant",
+    wrong3 : "Ailment"
+    }    
+
+var arrQuestion = [Question1 , Question2 , Question3 , Question4, Question5];
 
 
 
@@ -63,26 +79,50 @@ var arrQuestion = [Question1 , Question2 , Question3];
 // functions
 $(document).ready(function() {
     // console.log( "ready!" );
+
+function endgame() {
+    $(".question").html("<h2> Congrats!  Let's look at your score. </h2>");
+    $("#countDown").html(" ");
+    $(".answer1").html("<h2>Correct Answers: " + correct + "</h2>");
+    $(".answer2").html("<h2>Incorrect Answers: " + incorrect + "</h2>");
+    $(".answer3").html("<h2>Unanswered Questions: " + unanswered + "</h2>");
+    $(".answer4").html("<h2> </h2>").attr("id" , "correct");
+    $(".outcome").html(" ");
+    stopTimer();
+}
+
     function emptyAnswer() {
-        $(".question").html(" ");
-        $(".answer1").html(" ");
-        $(".answer2").html(" ");
-        $(".answer3").html(" ");
-        $(".answer4").html(" ");
-        midTimer = 6;
-        clearInterval(midId);
-        midId = setInterval(decMid, 1000);
+        if (nextQ >= 4){
+            endgame();
+        }
+        else {
+            
+            $(".question").html(" ");
+            $(".answer1").html(" ");
+            $(".answer2").html(" ");
+            $(".answer3").html(" ");
+            $(".answer4").html(" ");
+            midTimer = 6;
+            clearInterval(midId);
+            midId = setInterval(decMid, 1000);
+        }
+        
     }
 
     function decMid () {
         midTimer--;
         $("#countDown").html("<h2>Next Question in: </h2>" + midTimer);
         if (midTimer === 0) {
-            nextQ++;
-            populateQA();
-            stopTimer();
-            runTimer();
-            $(".outcome").html(" ");
+            if (nextQ >= 4){
+                endgame();
+            }
+            else{
+                nextQ++;
+                populateQA();
+                stopTimer();
+                runTimer();
+                $(".outcome").html(" ");
+            }
             
         }
     }
@@ -131,6 +171,7 @@ $(document).ready(function() {
             console.log(nextQ);
             
         }
+
         else{
             incorrect++;
             stopTimer();
