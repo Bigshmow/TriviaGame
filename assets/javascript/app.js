@@ -30,7 +30,6 @@ var nextQ = 0;
 var intervalId;
 var midId;
 
-
 var Question1 = 
     {question : "What does MPH stand for?",
     correct : "Miles per hour",
@@ -73,12 +72,8 @@ var Question5 =
 
 var arrQuestion = [Question1 , Question2 , Question3 , Question4, Question5];
 
-
-
-
 // functions
 $(document).ready(function() {
-    // console.log( "ready!" );
 
 function endgame() {
     $("#question").html("<h2> Congrats!  Let's look at your score. </h2>").attr("#gameover");
@@ -88,8 +83,10 @@ function endgame() {
     $(".answer3").html("<h2>Unanswered Questions: " + unanswered + "</h2>").attr("id" , "#gameover");
     $(".answer4").html("<h2> </h2>").attr("id" , "#gameover");
     $(".outcome").html("<h2> </h2>");
+    $("#startGame").fadeToggle(1000).text("Play Again?");
     stopTimer();
     $("#countDown").html("<h2> </h2>");
+    $(".gif").html("<h2> </h2>");
 }
 
     function emptyAnswer() {
@@ -143,10 +140,10 @@ function endgame() {
             stopTimer();
             unanswered++;
             $(".outcome").html("<h2>Out of fuel brother, times up!<h2>");
+            $(".gif").html('<img src="../TriviaGame/assets/images/OOF.gif">');
             emptyAnswer();
         }
     }
-    
 
     function stopTimer() {
         clearInterval(intervalId);
@@ -162,6 +159,7 @@ function endgame() {
         $(".answer3").html("<h2>" + arrQuestion[nextQ].wrong3 + "</h2>").attr("id" , "incorrect");
         $(".answer4").html("<h2>" + arrQuestion[nextQ].correct + "</h2>").attr("id" , "correct");
         $(".outcome").html("<h2> <h2>");
+        $(".gif").html(" ");
     }
 
     $(".answer").on("click",function(){
@@ -170,30 +168,24 @@ function endgame() {
             correct++;
             stopTimer();
             $(".outcome").html("<h2>Do a burn out!  You got that one correct!!<h2>");
-            emptyAnswer();
-            // console.log(incorrect);
-            // console.log(correct);
-            // console.log(nextQ);
-            
+            $(".gif").html('<img src="../TriviaGame/assets/images/burnout.gif">');
+            emptyAnswer();            
         }
 
         if ($(this).is("#incorrect")){
             incorrect++;
             stopTimer();
             $(".outcome").html("<h2>Wait you didn't know that one?  Crash and burn...<h2>");
-            emptyAnswer();
-            // console.log(incorrect);
-            // console.log(correct);
-            // console.log(nextQ);
-            
-        }
-    
+            $(".gif").html('<img src="../TriviaGame/assets/images/crashNburn.gif">');
+            emptyAnswer();    
+        }   
         });
 
-    
-
     $("#startGame").on("click",function(){
-        // alert("working");
+        correct = 0;
+        incorrect = 0;
+        unanswered = 0;
+        nextQ = 0;
         runTimer();
         populateQA();
         $("#startGame").fadeToggle(1000);
