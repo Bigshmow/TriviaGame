@@ -81,27 +81,30 @@ $(document).ready(function() {
     // console.log( "ready!" );
 
 function endgame() {
-    $(".question").html("<h2> Congrats!  Let's look at your score. </h2>");
+    $("#question").html("<h2> Congrats!  Let's look at your score. </h2>").attr("#gameover");
     $("#countDown").html(" ");
-    $(".answer1").html("<h2>Correct Answers: " + correct + "</h2>");
-    $(".answer2").html("<h2>Incorrect Answers: " + incorrect + "</h2>");
-    $(".answer3").html("<h2>Unanswered Questions: " + unanswered + "</h2>");
-    $(".answer4").html("<h2> </h2>").attr("id" , "correct");
-    $(".outcome").html(" ");
+    $(".answer1").html("<h2>Correct Answers: " + correct + "</h2>").attr("id" , "#gameover");
+    $(".answer2").html("<h2>Incorrect Answers: " + incorrect + "</h2>").attr("id" , "#gameover");
+    $(".answer3").html("<h2>Unanswered Questions: " + unanswered + "</h2>").attr("id" , "#gameover");
+    $(".answer4").html("<h2> </h2>").attr("id" , "#gameover");
+    $(".outcome").html("<h2> </h2>");
     stopTimer();
+    $("#countDown").html("<h2> </h2>");
 }
 
     function emptyAnswer() {
         if (nextQ >= 4){
             endgame();
+            
         }
         else {
             
-            $(".question").html(" ");
+            $("#question").html(" ");
             $(".answer1").html(" ");
             $(".answer2").html(" ");
             $(".answer3").html(" ");
             $(".answer4").html(" ");
+            
             midTimer = 6;
             clearInterval(midId);
             midId = setInterval(decMid, 1000);
@@ -115,13 +118,13 @@ function endgame() {
         if (midTimer === 0) {
             if (nextQ >= 4){
                 endgame();
+                
             }
             else{
                 nextQ++;
                 populateQA();
                 stopTimer();
                 runTimer();
-                $(".outcome").html(" ");
             }
             
         }
@@ -153,11 +156,12 @@ function endgame() {
     }
 
     function populateQA() {
-        $(".question").html("<h2>" + arrQuestion[nextQ].question + "</h2>");
-        $(".answer1").html("<h2>" + arrQuestion[nextQ].wrong1 + "</h2>");
-        $(".answer2").html("<h2>" + arrQuestion[nextQ].wrong2 + "</h2>");
-        $(".answer3").html("<h2>" + arrQuestion[nextQ].wrong3 + "</h2>");
+        $("#question").html("<h2>" + arrQuestion[nextQ].question + "</h2>");
+        $(".answer1").html("<h2>" + arrQuestion[nextQ].wrong1 + "</h2>").attr("id" , "incorrect");
+        $(".answer2").html("<h2>" + arrQuestion[nextQ].wrong2 + "</h2>").attr("id" , "incorrect");
+        $(".answer3").html("<h2>" + arrQuestion[nextQ].wrong3 + "</h2>").attr("id" , "incorrect");
         $(".answer4").html("<h2>" + arrQuestion[nextQ].correct + "</h2>").attr("id" , "correct");
+        $(".outcome").html("<h2> <h2>");
     }
 
     $(".answer").on("click",function(){
@@ -165,20 +169,22 @@ function endgame() {
         if ($(this).is("#correct")){
             correct++;
             stopTimer();
+            $(".outcome").html("<h2>Do a burn out!  You got that one correct!!<h2>");
             emptyAnswer();
-            console.log(incorrect);
-            console.log(correct);
-            console.log(nextQ);
+            // console.log(incorrect);
+            // console.log(correct);
+            // console.log(nextQ);
             
         }
 
-        else{
+        if ($(this).is("#incorrect")){
             incorrect++;
             stopTimer();
+            $(".outcome").html("<h2>Wait you didn't know that one?  Crash and burn...<h2>");
             emptyAnswer();
-            console.log(incorrect);
-            console.log(correct);
-            console.log(nextQ);
+            // console.log(incorrect);
+            // console.log(correct);
+            // console.log(nextQ);
             
         }
     
