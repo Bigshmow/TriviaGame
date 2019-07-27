@@ -26,6 +26,7 @@ var incorrect = 0;
 var unanswered = 0;
 var timer = 31;
 var midTimer = 7;
+var nextQ = 0;
 var intervalId;
 var midId;
 
@@ -54,10 +55,13 @@ var Question3 =
     wrong3 : "1970"
     }
 
+var arrQuestion = [Question1 , Question2 , Question3];
+
+
 
 
 // functions
-$( document ).ready(function() {
+$(document).ready(function() {
     // console.log( "ready!" );
     function emptyAnswer() {
         $(".question").html(" ");
@@ -74,9 +78,12 @@ $( document ).ready(function() {
         midTimer--;
         $("#countDown").html("<h2>Next Question in: </h2>" + midTimer);
         if (midTimer === 0) {
+            nextQ++;
             populateQA();
             stopTimer();
             runTimer();
+            $(".outcome").html(" ");
+            
         }
     }
 
@@ -101,22 +108,53 @@ $( document ).ready(function() {
     function stopTimer() {
         clearInterval(intervalId);
         clearInterval(midId);
+        
+        
     }
 
     function populateQA() {
-        $(".question").html("<h2>" + Question1.question + "</h2>");
-        $(".answer1").html("<h2>" + Question1.wrong1 + "</h2>");
-        $(".answer2").html("<h2>" + Question1.correct + "</h2>");
-        $(".answer3").html("<h2>" + Question1.wrong2 + "</h2>");
-        $(".answer4").html("<h2>" + Question1.wrong3 + "</h2>");
+        $(".question").html("<h2>" + arrQuestion[nextQ].question + "</h2>");
+        $(".answer1").html("<h2>" + arrQuestion[nextQ].wrong1 + "</h2>");
+        $(".answer2").html("<h2>" + arrQuestion[nextQ].wrong2 + "</h2>");
+        $(".answer3").html("<h2>" + arrQuestion[nextQ].wrong3 + "</h2>");
+        $(".answer4").html("<h2>" + arrQuestion[nextQ].correct + "</h2>").attr("id" , "correct");
     }
+
+    $(".answer").on("click",function(){
+            
+        if ($(this).is("#correct")){
+            correct++;
+            stopTimer();
+            emptyAnswer();
+            console.log(incorrect);
+            console.log(correct);
+            console.log(nextQ);
+            
+        }
+        else{
+            incorrect++;
+            stopTimer();
+            emptyAnswer();
+            console.log(incorrect);
+            console.log(correct);
+            console.log(nextQ);
+            
+        }
+    
+        });
+
+    
 
     $("#startGame").on("click",function(){
         // alert("working");
         runTimer();
         populateQA();
         $("#startGame").fadeToggle(1000);
-    })
+    });
+
+    
+
+    
 
 
 
