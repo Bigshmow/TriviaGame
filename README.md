@@ -12,5 +12,5 @@ The goal of this project was to use JavaScript and Jquery to display content to 
 
 [![Trivia-Game-Questions.jpg](https://i.postimg.cc/HkbZbm1C/Trivia-Game-Questions.jpg)](https://postimg.cc/75YnypLB)
 
-If you have any questions send an email to dstewart88@gmail.com with the subject line GifTastic.
+If you have any questions send an email to dstewart88@gmail.com with the subject line TriviaGame.
 Thank you.
