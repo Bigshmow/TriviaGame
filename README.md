@@ -2,6 +2,8 @@
 week-05-JS2/Homework
 This is the JavaScipt 2.0 homework for UCSD Coding BootCamp.
 
+https://bigshmow.github.io/TriviaGame/
+
 The project was to build a working trivia game that asks the user to respond within the countdown time or else the questioning will continue.
 
 Start your trivia journey by clicking the "let's roll" button and continue to answer questions by clicking directly on them.  At the end of the game your score will be reported and displayed for bragging rights.  If you'd like to play again just click the play again button!
